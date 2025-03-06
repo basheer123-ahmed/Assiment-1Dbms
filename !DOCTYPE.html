@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Inventory Management System</h1>
+    <table id="productsTable">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Products will be dynamically inserted here -->
+        </tbody>
+    </table>
+    
+    <h2>Add New Product</h2>
+    <form id="productForm">
+        <input type="text" id="name" placeholder="Product Name" required>
+        <input type="text" id="category" placeholder="Category" required>
+        <input type="number" id="price" placeholder="Price" required>
+        <input type="number" id="quantity" placeholder="Quantity" required>
+        <button type="submit">Add Product</button>
+    </form>
+    
+    <script src="script.js"></script>
+</body>
+</html>

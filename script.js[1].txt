@@ -1,0 +1,47 @@
+/* script.js */
+document.addEventListener("DOMContentLoaded", function () {
+    fetchProducts();
+
+    document.getElementById("productForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        addProduct();
+    });
+});
+
+function fetchProducts() {
+    fetch("/products")
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.querySelector("#productsTable tbody");
+            tableBody.innerHTML = "";
+            data.forEach(product => {
+                const row = `<tr>
+                    <td>${product.ProductID}</td>
+                    <td>${product.Name}</td>
+                    <td>${product.Category}</td>
+                    <td>${product.Price}</td>
+                    <td>${product.Quantity}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        });
+}
+
+function addProduct() {
+    const product = {
+        Name: document.getElementById("name").value,
+        Category: document.getElementById("category").value,
+        Price: document.getElementById("price").value,
+        Quantity: document.getElementById("quantity").value,
+    };
+    
+    fetch("/add_product", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product)
+    }).then(response => response.json())
+    .then(() => {
+        fetchProducts();
+        document.getElementById("productForm").reset();
+    });
+}
